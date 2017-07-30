@@ -1,0 +1,208 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="styles/styles.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Economica" rel="stylesheet">
+
+    <link href='https://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet' type='text/css'>
+    <title>Jared's Portfolio</title>
+</head>
+
+<body>
+    <div class="landing">
+        <br>
+        <!-- Header section including Logo and Nav-->
+        <nav class="nav" id="profiles">
+            <ul>
+                <li class="logo"><img src="img/cJaredmLogo.png"></li>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#profiles">Profiles</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- About Section, Radial Percentages -->
+        <div class="profile" id="none">
+            <div class="profile_picture">
+                <img src="img/JaredProfilePic.jpg" height="280" width="280">
+            </div>
+            <div class="profile_info">
+                <div class="profile_info__skills">
+                    <ul>
+                        <li>
+                            <div class="radialDivs">
+                                <canvas class="radials" id="radialOne" width="100" height="100" data-num="10" data-color="#ad2323"></canvas>
+                                <div>Skill 1</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="radialDivs">
+                                <canvas class="radials" id="radialTwo" width="100" height="100" data-num="25" data-color="blue"></canvas>
+                                <div>Skill 2</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="radialDivs">
+                                <canvas class="radials" id="radialThree" width="100" height="100" data-num="50" data-color="orange"></canvas>
+                                <div>Skill 3</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="radialDivs">
+                                <canvas class="radials" id="radialFour" width="100" height="100" data-num="75" data-color="yellow"></canvas>
+                                <div>Skill 4</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="radialDivs">
+                                <canvas class="radials" id="radialFive" width="100" height="100" data-num="80" data-color="purple"></canvas>
+                                <div>Skill 5</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="profile_info__about">
+                    <h3>About Section</h3>
+                    <p>So this is the about me section where I talk about myself and see how it shows up on the page. Hoefully it will be displayed centered and below the skills radials that I have. I hope I can get the radials to animate when they show
+                        up on the page, each time.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <!-- Flex Panel Section, 3 wide -->
+    <div id="home">
+        <div class="panels">
+            <div class="panel panel1">
+                <p>HTML / CSS</p>
+                <p>Coding</p>
+                <p>JavaScript/Node JS</p>
+            </div>
+            <div class="panel panel2">
+                <p>Master of Ed.</p>
+                <p>Training</p>
+                <p>5+ Years XP</p>
+            </div>
+            <div class="panel panel3">
+                <p><a href="#">Add another</a></p>
+                <p>Resume</p>
+                <p><a href="#">Resume</a></p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="site-wrap">
+        <!-- Profile Links thin section (GitHub, Twitter, LinkedIN, Resume, Konami Code hint) -->
+        <div class="links-bar" id="about">
+            <ul>
+                <li>
+                    <a href="https://github.com/cjaredm"><img src="img/logo-github.png" alt="GitHub"></a>
+                </li>
+                <li class="Twitter">
+                    <a href="https://twitter.com/cjaredm"><img src="img/logo-twitter.png" alt="Twitter"></a>
+                </li>
+                <li>
+                    <a href="https://www.linkedin.com/in/jaredmortenson/"><img src="img/logo-linkedin.png" alt="LinkedIn"></a>
+                </li>
+                <li>
+                    <img id="konami" src="img/codekonami.png" alt="Konami Code">
+                </li>
+                <li>
+                    <a href=""><img src="img/resumeIcon.png" alt="Resume"></a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Portfolio Section 3 wide, at leat 2 down, slide up on scroll -->
+
+        <div class="portfolio_grid" id="portfolio">
+            <div class="portfolio_grid__item">
+                <img src="" height="300" width="300">
+                <span class="portfolio_grid__title">This Portfolio Website</span>
+            </div>
+            <div class="portfolio_grid__item">
+                <img src="img/appscript.jpg" height="300" width="300">
+                <span class="portfolio_grid__title">Google App Script</span>
+            </div>
+            <div class="portfolio_grid__item">
+                <img src="img/codecademyLogo.png" height="300" width="300">
+                <span class="portfolio_grid__title">Codecademy</span>
+            </div>
+            <div class="portfolio_grid__item">
+                <img src="img/socketio.png" height="300" width="300">
+                <span class="portfolio_grid__title">Socket.io Chat App</span>
+            </div>
+            <div class="portfolio_grid__item">
+                <img src="img/javascript30.jpg" height="300" width="300">
+                <span class="portfolio_grid__title">JavaScript30</span>
+            </div>
+            <div class="portfolio_grid__item">
+                <img src="img/javascript30.jpg" height="300" width="300">
+                <span class="portfolio_grid__title">JavaScript30</span>
+            </div>
+            <div class="portfolio_grid__item">
+                <img src="img/javascript30.jpg" height="300" width="300">
+                <span class="portfolio_grid__title">JavaScript30</span>
+            </div>
+            <div class="portfolio_grid__item">
+                <img src="img/javascript30.jpg" height="300" width="300">
+                <span class="portfolio_grid__title">JavaScript30</span>
+            </div>
+            <div class="portfolio_grid__item">
+                <img src="img/javascript30.jpg" height="300" width="300">
+                <span class="portfolio_grid__title">JavaScript30</span>
+            </div>
+        </div>
+
+        <!-- Footer, 3 sections wide (Page Links / Profile Links / Contact Me Form) -->
+        <div id="footer">
+            <div class="footer_column">
+                <h2>Site Map</h2>
+                <ul>
+                    <li>Home</li>
+                    <li>Profiles</li>
+                    <li>About</li>
+                    <li>Portfolio</li>
+                    <li>Contact</li>
+                </ul>
+            </div>
+            <div class="footer_column">
+                <h2>Site Map</h2>
+                <ul>
+                    <li>Home</li>
+                    <li>Profiles</li>
+                    <li>About</li>
+                    <li>Portfolio</li>
+                    <li>Contact</li>
+                </ul>
+            </div>
+            <div class="footer_column">
+                <h2>Site Map</h2>
+                <ul>
+                    <li>Home</li>
+                    <li>Profiles</li>
+                    <li>About</li>
+                    <li>Portfolio</li>
+                    <li>Contact</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</body>
+<script src="dist/bundle.js"></script>
+
+</html>
