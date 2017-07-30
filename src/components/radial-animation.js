@@ -3,7 +3,8 @@
 //http://jsfiddle.net/loktar/uhVj6/4/
 
 let currentPercent = 1; //Compared to endPercent so it knows to end.
-function animate(rads, current) {
+
+function animateSkillCirlces(rads, current) {
     const context = rads.getContext('2d');
     //Starting coordinates
     const x = rads.width / 2; //middle of canvas
@@ -24,13 +25,14 @@ function animate(rads, current) {
     currentPercent++; // +1%
 
     //Canvas Text
-    context.font = "bold " + (radius * 0.7) + "px serif";
+    context.font = `lighter ${radius * 0.7}px serif`;
     context.textBaseline = "top";
     context.textAlign = "center";
-    context.fillText(endNum, x /*- (x * 0.25)*/ , y - (y * 0.3));
+    context.fillStyle = 'white';
+    context.fillText(endNum, x, y - (y * 0.3));
 
     if (currentPercent < endPercent) { //If the +1 didn't put it to the endPercent then do it again, starting at the current percentage
-        requestAnimationFrame(() => animate(rads, (currentPercent / 100)));
+        requestAnimationFrame(() => animateSkillCirlces(rads, (currentPercent / 100)));
     }
     context.closePath();
 }
