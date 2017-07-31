@@ -14,7 +14,7 @@ body {
 .landing {
     height: 100%;
     background-color: black;
-    background-image: url('../img/stars/stary-background.jpg');
+    background-image: url('../img/landing/stary-backgroundScaled.jpg');
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -103,7 +103,7 @@ transition: transform 0.5s; */
 }
 
 .panel {
-    background: #6B0F9C;
+    background: black;
     box-shadow: inset 0 0 0 5px rgba(255, 255, 255, 0.1);
     color: white;
     text-align: center;
@@ -119,16 +119,15 @@ transition: transform 0.5s; */
 }
 
 .panel1 {
-    background-image: url(../img/code-screen.jpg);
-    color: white;
+    background-image: url('../img/flex-panels/code-screen-small.jpg');
 }
 
 .panel2 {
-    background-image: url(../img/students.jpg);
+    background-image: url('../img/flex-panels/students-small.jpg');
 }
 
 .panel3 {
-    background-image: url(../img/computer-website.jpg);
+    background-image: url('../img/flex-panels/computer-website-small.jpg');
 }
 
 .panel>* {
@@ -203,11 +202,6 @@ transition: transform 0.5s; */
 }
 
 
-/* .links-bar .Twitter {
-width: 100px;
-} */
-
-
 /* Profile */
 
 .profile {
@@ -239,7 +233,7 @@ width: 100px;
 .profile_info__skills li {}
 
 
-/* Don't Touch These, they are good. Radials */
+/* Radials */
 
 .radialDivs {
     display: flex;
@@ -282,11 +276,6 @@ width: 100px;
     height: 300px;
     margin: 15px 10px 15px 10px;
     margin-bottom: 15px;
-    /* background-color: #999; */
-}
-
-.portfolio_grid__title {
-    /* font-weight: bold; */
 }
 
 

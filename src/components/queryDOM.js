@@ -1,3 +1,3 @@
-const panels = document.querySelectorAll('.panel');
-const nav = document.querySelector('.nav');
-const radials = document.querySelectorAll(".radials");
+export const panels = document.querySelectorAll('.panel');
+export const nav = document.querySelector('.nav');
+export const radials = document.querySelectorAll(".radials");

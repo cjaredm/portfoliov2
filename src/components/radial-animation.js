@@ -2,9 +2,9 @@
 /*************Radial Animations*****************/
 //http://jsfiddle.net/loktar/uhVj6/4/
 
-let currentPercent = 1; //Compared to endPercent so it knows to end.
+export let currentPercent = 1; //Compared to endPercent so it knows to end.
 
-function animateSkillCirlces(rads, current) {
+export function animateSkillsCircles(rads, current) {
     const context = rads.getContext('2d');
     //Starting coordinates
     const x = rads.width / 2; //middle of canvas
@@ -32,7 +32,7 @@ function animateSkillCirlces(rads, current) {
     context.fillText(endNum, x, y - (y * 0.3));
 
     if (currentPercent < endPercent) { //If the +1 didn't put it to the endPercent then do it again, starting at the current percentage
-        requestAnimationFrame(() => animateSkillCirlces(rads, (currentPercent / 100)));
+        requestAnimationFrame(() => animateSkillsCircles(rads, (currentPercent / 100)));
     }
     context.closePath();
 }

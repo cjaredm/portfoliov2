@@ -72,140 +72,51 @@
 
 __webpack_require__(1);
 
-var _debounce = __webpack_require__(2);
+var _queryDOM = __webpack_require__(2);
 
-/**************Flex Panels Open and close****************/
-//import {something} from './src/components/queryDOM';
-var panels = document.querySelectorAll('.panel');
-var ps = document.querySelectorAll('p');
+var _flexPanels = __webpack_require__(3);
 
-//Toggle Open a new panel
-function toggleOpen(e, index) {
-    //This will close all open panels before the new one is opened
-    var open = document.querySelector('.open');
-    if (open) {
-        open.classList.remove('open');
-    }
-    document.getElementsByClassName('panel')[index].classList.toggle('open');
-}
+var _debounce = __webpack_require__(4);
 
-//Toggles the fly-in text when panel opens and closes.
-function toggleActive(e) {
-    if (e.propertyName.includes('flex')) {
-        this.classList.toggle('open-active');
-    }
-}
+var _fixedNav = __webpack_require__(5);
 
-//Event Listeners for Flex Panels
-panels.forEach(function (panel, index) {
-    return panel.addEventListener('click', function (e) {
-        return toggleOpen(e, index);
-    });
-});
-panels.forEach(function (panel) {
-    return panel.addEventListener('transitionend', toggleActive);
-});
+var _radialAnimation = __webpack_require__(6);
 
-/* Sticky Nav */
-var nav = document.querySelector('.nav');
-var navHeight = nav.offsetHeight;
-var topOfNav = nav.offsetTop;
-var landing = document.querySelector('.landing');
-var landingHeight = landing.offsetHeight;
-var almostBottomOfLanding = landingHeight - navHeight;
-var profile = document.querySelector('.profile');
+//Animate the skill circles
 
-function fixNav() {
-    console.log('scroll');
-    var landingThing = false;
-    if (window.scrollY >= topOfNav) {
-        profile.style.paddingTop = nav.offsetHeight + 'px';
-        document.body.classList.add('fixed-nav');
-        landingThing = true;
-    } else {
-        profile.style.paddingTop = 0;
-        document.body.classList.remove('fixed-nav');
-        landingThing = false;
-    }
 
-    if (window.scrollY >= almostBottomOfLanding) {
-        nav.style.backgroundColor = 'black';
-    } else if (landingThing) {
-        nav.style.backgroundColor = 'rgba(0,0,0,0.5)';
-    } else {
-        nav.style.backgroundColor = 'transparent';
-    }
-}
+/************* STICKY NAV*****************/
+//Nav fixs to the top of the page.
 
-window.addEventListener('scroll', (0, _debounce.debounce)(fixNav));
+//Toggle in the text to slide in
 
-// NEXT SECTION
-/*************Radial Animations*****************/
-//http://jsfiddle.net/loktar/uhVj6/4/
+/* Functions to import based on section */
+window.addEventListener('scroll', (0, _debounce.debounce)(_fixedNav.fixNav));
 
-var currentPercent = 1; //Compared to endPercent so it knows to end.
-function animate(rads, current) {
-    var context = rads.getContext('2d');
-    //Starting coordinates
-    var x = rads.width / 2; //middle of canvas
-    var y = rads.height / 2; //middle of canvas
-    var radius = 0.38 * rads.width; //Radius of circle in pixels
-    var endNum = rads.getAttribute('data-num');
-    var endPercent = +rads.getAttribute('data-num') + +1; //Ending % of circle
-    var fullCircle = Math.PI * 2; //= 360 degrees in radians
-    var quarterClock = Math.PI / 2; //This equals 25% of a circle used later to move start point from 3 o'clock to 12.
-
-    context.lineWidth = 10; // Line width
-    context.strokeStyle = rads.getAttribute('data-color'); //Line Color
-
-    context.beginPath();
-    //https://www.w3schools.com/tags/canvas_arc.asp
-    context.arc(x, y, radius, -quarterClock, fullCircle * current - quarterClock, false);
-    context.stroke(); //Draw the line
-    currentPercent++; // +1%
-
-    //Canvas Text
-    context.font = 'lighter ' + radius * 0.7 + 'px serif';
-    context.textBaseline = "top";
-    context.textAlign = "center";
-    context.fillStyle = 'white';
-    context.fillText(endNum, x, y - y * 0.3);
-
-    if (currentPercent < endPercent) {
-        //If the +1 didn't put it to the endPercent then do it again, starting at the current percentage
-        requestAnimationFrame(function () {
-            return animate(rads, currentPercent / 100);
-        });
-    }
-    context.closePath();
-}
-
+/************* Radial Animations *****************/
 /* Animate the radials that come next when scrolled through */
 
-var radials = document.querySelectorAll(".radials");
+// let current% to be updated in animation
+//function make another function wait to run
 
-function onScreenYet(e) {
-    radials.forEach(function (rad) {
-        var radOnScreen = window.scrollY + window.innerHeight - rad.height;
-        var radBottom = rad.offsetTop + rad.height;
+//Click on flex panels to grow and shrink
+// Konami Secret code
 
-        var isOnScreen = radOnScreen > rad.offsetTop;
-        var isNotScrolledPassed = window.scrollY < radBottom;
-
-        if (isOnScreen && isNotScrolledPassed) {
-            rad.classList.add('animate');
-        } else {
-            rad.classList.remove('animate');
-        }
-    });
-}
-window.addEventListener('scroll', (0, _debounce.debounce)(onScreenYet));
-
-//leave this here.
-radials.forEach(function (radial) {
+/* Queries for the DOM elements */
+_queryDOM.radials.forEach(function (radial) {
     var id = radial.getAttribute('id');
     var radialCircle = document.querySelector('#' + id);
-    animate.call(radialCircle, radialCircle);
+    _radialAnimation.animateSkillsCircles.call(radialCircle, radialCircle);
+});
+
+/************** Flex Panels Open and close ****************/
+_queryDOM.panels.forEach(function (panel, index) {
+    return panel.addEventListener('click', function (e) {
+        return (0, _flexPanels.toggleOpen)(e, index);
+    });
+});
+_queryDOM.panels.forEach(function (panel) {
+    return panel.addEventListener('transitionend', _flexPanels.toggleActive);
 });
 
 /***/ }),
@@ -238,6 +149,50 @@ window.addEventListener('keyup', function (e) {
 
 
 Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var panels = exports.panels = document.querySelectorAll('.panel');
+var nav = exports.nav = document.querySelector('.nav');
+var radials = exports.radials = document.querySelectorAll(".radials");
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.toggleOpen = toggleOpen;
+exports.toggleActive = toggleActive;
+/**************Flex Panels Open and close****************/
+//Toggle Open a new panel
+function toggleOpen(e, index) {
+    //This will close all open panels before the new one is opened
+    var open = document.querySelector('.open');
+    if (open) {
+        open.classList.remove('open');
+    }
+    document.getElementsByClassName('panel')[index].classList.toggle('open');
+}
+
+//Toggles the fly-in text when panel opens and closes.
+function toggleActive(e) {
+    if (e.propertyName.includes('flex')) {
+        this.classList.toggle('open-active');
+    }
+}
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.debounce = debounce;
@@ -259,6 +214,101 @@ function debounce(func) {
         timeout = setTimeout(later, wait);
         if (callNow) func.apply(context, args);
     };
+}
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.fixNav = fixNav;
+/* Sticky Nav */
+function fixNav() {
+    var nav = document.querySelector('.nav');
+    var navHeight = nav.offsetHeight;
+    var topOfNav = nav.offsetTop;
+    var landing = document.querySelector('.landing');
+    var landingHeight = landing.offsetHeight;
+    var almostBottomOfLanding = landingHeight - navHeight;
+    var profile = document.querySelector('.profile');
+
+    var landingThing = false;
+
+    if (window.scrollY >= topOfNav) {
+        profile.style.paddingTop = nav.offsetHeight + 'px';
+        document.body.classList.add('fixed-nav');
+        landingThing = true;
+    } else {
+        profile.style.paddingTop = 0;
+        document.body.classList.remove('fixed-nav');
+        landingThing = false;
+    }
+
+    if (window.scrollY >= almostBottomOfLanding) {
+        nav.style.backgroundColor = 'black';
+    } else if (landingThing) {
+        nav.style.backgroundColor = 'rgba(0,0,0,0.5)';
+    } else {
+        nav.style.backgroundColor = 'transparent';
+    }
+}
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.animateSkillsCircles = animateSkillsCircles;
+// NEXT SECTION
+/*************Radial Animations*****************/
+//http://jsfiddle.net/loktar/uhVj6/4/
+
+var currentPercent = exports.currentPercent = 1; //Compared to endPercent so it knows to end.
+
+function animateSkillsCircles(rads, current) {
+    var context = rads.getContext('2d');
+    //Starting coordinates
+    var x = rads.width / 2; //middle of canvas
+    var y = rads.height / 2; //middle of canvas
+    var radius = 0.38 * rads.width; //Radius of circle in pixels
+    var endNum = rads.getAttribute('data-num');
+    var endPercent = +rads.getAttribute('data-num') + +1; //Ending % of circle
+    var fullCircle = Math.PI * 2; //= 360 degrees in radians
+    var quarterClock = Math.PI / 2; //This equals 25% of a circle used later to move start point from 3 o'clock to 12.
+
+    context.lineWidth = 10; // Line width
+    context.strokeStyle = rads.getAttribute('data-color'); //Line Color
+
+    context.beginPath();
+    //https://www.w3schools.com/tags/canvas_arc.asp
+    context.arc(x, y, radius, -quarterClock, fullCircle * current - quarterClock, false);
+    context.stroke(); //Draw the line
+    exports.currentPercent = currentPercent += 1; // +1%
+
+    //Canvas Text
+    context.font = 'lighter ' + radius * 0.7 + 'px serif';
+    context.textBaseline = "top";
+    context.textAlign = "center";
+    context.fillStyle = 'white';
+    context.fillText(endNum, x, y - y * 0.3);
+
+    if (currentPercent < endPercent) {
+        //If the +1 didn't put it to the endPercent then do it again, starting at the current percentage
+        requestAnimationFrame(function () {
+            return animateSkillsCircles(rads, currentPercent / 100);
+        });
+    }
+    context.closePath();
 }
 
 /***/ })

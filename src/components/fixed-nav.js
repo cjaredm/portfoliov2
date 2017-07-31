@@ -1,16 +1,31 @@
 /* Sticky Nav */
-const nav = document.querySelector('.nav');
-const topOfNav = nav.offsetTop;
+export function fixNav() {
+    const nav = document.querySelector('.nav');
+    const navHeight = nav.offsetHeight;
+    const topOfNav = nav.offsetTop;
+    const landing = document.querySelector('.landing');
+    const landingHeight = landing.offsetHeight;
+    const almostBottomOfLanding = landingHeight - navHeight;
+    const profile = document.querySelector('.profile');
 
-function fixNav() {
-    console.log('it is updating');
+    let landingThing = false;
+
     if (window.scrollY >= topOfNav) {
-        document.body.style.paddingTop = nav.offsetHeight + 'px';
+        profile.style.paddingTop = `${nav.offsetHeight}px`;
         document.body.classList.add('fixed-nav');
+        landingThing = true;
     } else {
-        document.body.style.paddingTop = 0;
+        profile.style.paddingTop = 0;
         document.body.classList.remove('fixed-nav');
+        landingThing = false;
+    }
+
+    if (window.scrollY >= almostBottomOfLanding) {
+        nav.style.backgroundColor = 'black';
+
+    } else if (landingThing) {
+        nav.style.backgroundColor = 'rgba(0,0,0,0.5)';
+    } else {
+        nav.style.backgroundColor = 'transparent';
     }
 }
-
-window.addEventListener('scroll', fixNav);
